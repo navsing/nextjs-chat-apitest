@@ -66,8 +66,15 @@ async function submitUserMessage(content: string) {
   function result() {
 
     const apiResponse = JSON.stringify(todoNav)
-    textNode = <BotMessage content={apiResponse} />
-
+    textNode =
+    <div>
+      <p className="leading-normal text-muted-foreground">JSON Payload POST</p>
+      <pre>{JSON.stringify(aiState.get().messages, null, 2)}</pre>
+      <br />
+      <br />
+      <p className="leading-normal text-muted-foreground">Response from bot</p>
+      <BotMessage content={apiResponse} />
+    </div>
 
 
     aiState.done({

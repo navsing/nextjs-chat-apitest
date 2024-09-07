@@ -11,7 +11,7 @@ export function EmptyScreen() {
         <h1 className="text-lg font-semibold">
           Welcome to Headache Specialist!
         </h1>
-        <p className="leading-normal text-muted-foreground">
+        {/* <p className="leading-normal text-muted-foreground">
           This is an open source AI chatbot app template built with{' '}
           <ExternalLink href="https://nextjs.org">Next.js</ExternalLink>, the{' '}
           <ExternalLink href="https://sdk.vercel.ai">
@@ -31,6 +31,9 @@ export function EmptyScreen() {
           to combine text with generative UI as output of the LLM. The UI state
           is synced through the SDK so the model is aware of your interactions
           as they happen.
+        </p> */}
+        <p className="leading-normal text-muted-foreground">
+          I am your Headache specialist and I will help you diagnose and treat your headache.
         </p>
       </div>
     </div>
