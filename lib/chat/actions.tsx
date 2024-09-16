@@ -83,6 +83,9 @@ async function submitUserMessage(content: string) {
       <p className="leading-normal text-muted-foreground">JSON Payload POST</p>
       <pre>{JSON.stringify(aiState.get().messages, null, 2)}</pre>
       <br />
+      <p className="leading-normal text-muted-foreground">HEADACHE_AI_API_URL</p>
+      <pre>{process.env.HEADACHE_AI_API_URL}</pre>
+      <br />
       <br />
       <p className="leading-normal text-muted-foreground">Response from bot</p>
       <BotMessage content={apiResponse} />
