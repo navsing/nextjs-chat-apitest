@@ -62,7 +62,8 @@ async function submitUserMessage(content: string) {
 
   //const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
   const data = {
-    input: content
+    DeviceID: "web123",
+    symptom: content
   };
   const response = await fetch(process.env.HEADACHE_AI_API_URL, {
     method: "POST",
@@ -78,18 +79,29 @@ async function submitUserMessage(content: string) {
   function result() {
 
     const apiResponse = JSON.stringify(todoNav)
+
+    let displayResponse, displayHeader
+    if (JSON.parse(apiResponse)["Additional Info Needed"]) {
+      displayResponse = JSON.parse(apiResponse)["Additional Info Needed"]
+      displayHeader = "Additional Information Needed"
+    }
+    if (JSON.parse(apiResponse)["Diagnostics Report"]) {
+      displayResponse = JSON.parse(apiResponse)["Diagnostics Report"]
+      displayHeader = "Diagnostics Report"
+    }
+
     textNode =
     <div>
-      <p className="leading-normal text-muted-foreground">JSON Payload POST</p>
-      <pre>{JSON.stringify(aiState.get().messages, null, 2)}</pre>
-      <br />
-      <p className="leading-normal text-muted-foreground">HEADACHE_AI_API_URL</p>
-      <pre>{process.env.HEADACHE_AI_API_URL}</pre>
-      <br />
-      <br />
-      <p className="leading-normal text-muted-foreground">Response from bot</p>
-      <BotMessage content={apiResponse} />
+      <p className="leading-normal text-muted-foreground">{displayHeader}</p>
+      <BotMessage content={displayResponse} />
     </div>
+      //<p className="leading-normal text-muted-foreground">JSON Payload POST</p>
+      //<pre>{JSON.stringify(aiState.get().messages, null, 2)}</pre>
+      //<br />
+      //<p className="leading-normal text-muted-foreground">HEADACHE_AI_API_URL</p>
+      //<pre>{process.env.HEADACHE_AI_API_URL}</pre>
+      //<br />
+      //<br />
 
 
     aiState.done({
