@@ -81,12 +81,12 @@ async function submitUserMessage(content: string) {
     const apiResponse = JSON.stringify(todoNav)
 
     let displayResponse, displayHeader
-    if (JSON.parse(apiResponse)["Additional Info Needed"]) {
-      displayResponse = JSON.parse(apiResponse)["Additional Info Needed"]
+    displayResponse = JSON.parse(apiResponse)["response"]
+    
+    if (JSON.parse(apiResponse)["response_type"] == "continue") {
       displayHeader = "Additional Information Needed"
     }
-    if (JSON.parse(apiResponse)["Diagnostics Report"]) {
-      displayResponse = JSON.parse(apiResponse)["Diagnostics Report"]
+    else if (JSON.parse(apiResponse)["response_type"] == "end") {
       displayHeader = "Diagnostics Report"
     }
 
